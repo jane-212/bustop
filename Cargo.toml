@@ -1,0 +1,19 @@
+[package]
+name = "bustop"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gpui = { git = "https://github.com/zed-industries/zed.git" }
+http_client = { git = "https://github.com/zed-industries/zed.git" }
+reqwest_client = { git = "https://github.com/zed-industries/zed.git" }
+gpui-component = { git = "https://github.com/longbridge/gpui-component.git" }
+
+anyhow = "1.0.99"
+rust-embed = "8.7.2"
+strum = "0.27.2"
+chrono = "0.4.41"
+smol = "2.0.2"
+scraper = "0.24.0"
+futures = "0.3.31"
+ego-tree = "0.10.0"
