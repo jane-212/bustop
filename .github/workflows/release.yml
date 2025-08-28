@@ -106,7 +106,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          draft: true
           files: |
-            target/release/*.app
-            target/release/*.exe
-            target/release/*.deb
+            target/${{ matrix.target }}/release/*.app
+            target/${{ matrix.target }}/release/*.exe
+            target/${{ matrix.target }}/release/*.deb
