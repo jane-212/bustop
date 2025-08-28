@@ -266,7 +266,7 @@ impl Detail {
             .select(&selectors.page)
             .next()
             .and_then(|span| span.attr("title"))
-            .map(|title| title.trim_matches(&['共', '頁', ' ']))
+            .map(|title| title.trim().trim_matches(&['共', '頁', ' ']))
             .and_then(|page| page.parse::<u32>().ok())
             .unwrap_or(1);
         let main_author_name = html
@@ -313,6 +313,7 @@ impl Detail {
         let talks = html
             .select(&selectors.items)
             .into_iter()
+            .skip(1)
             .flat_map(|item| Self::parse_item(item, selectors))
             .collect::<Vec<_>>();
         talk_page.talks.extend(talks);
@@ -354,7 +355,9 @@ impl Detail {
                     .next()
                     .map(|em| em.text().collect::<String>())
                     .and_then(|date_time| {
-                        let date_time = date_time.trim_start_matches(&[' ', '發', '表', '於']);
+                        let date_time = date_time
+                            .trim()
+                            .trim_start_matches(&[' ', '發', '表', '於']);
                         NaiveDateTime::parse_from_str(date_time, "%Y-%m-%d %H:%M:%S").ok()
                     })
             })?;
@@ -481,7 +484,9 @@ impl Detail {
                     .next()
                     .map(|span| span.text().collect::<String>())
                     .and_then(|date_time| {
-                        let date_time = date_time.trim_start_matches(&[' ', '發', '表', '於']);
+                        let date_time = date_time
+                            .trim()
+                            .trim_start_matches(&[' ', '發', '表', '於']);
                         NaiveDateTime::parse_from_str(date_time, "%Y-%m-%d %H:%M").ok()
                     })
             })?;

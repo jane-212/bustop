@@ -46,7 +46,7 @@ impl Selectors {
                 "#postlist > div.nthread_info.cl > div > div > span:nth-child(2)"
             ),
             main_content: parse_selector!(
-                "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div.t_fsz > table > tbody > tr > td.t_f"
+                "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div:nth-child(1) > table > tbody > tr > td.t_f"
             ),
             main_replys: parse_selector!(
                 "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div.cm > div.pstl"
@@ -73,7 +73,7 @@ impl Selectors {
                 "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pi > strong > a > em"
             ),
             item_content: parse_selector!(
-                "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pct > div > div.t_fsz > table > tbody > tr > td.t_f"
+                "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pct > div > div:nth-child(1) > table > tbody > tr > td.t_f"
             ),
             item_replys: parse_selector!(
                 "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pct > div.pcb > div.cm > div.pstl.xs1.cl"
