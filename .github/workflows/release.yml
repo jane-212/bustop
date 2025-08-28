@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           cargo install cargo-packager --locked
-          cross packager --verbose --release ${{ env.TARGET_FLAGS }} ${{ env.FORMAT_FLAGS }}
+          cargo packager --verbose --release ${{ env.TARGET_FLAGS }} ${{ env.FORMAT_FLAGS }}
         env:
           VERSION: ${{ needs.create-release.outputs.version }}
 
