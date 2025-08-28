@@ -98,6 +98,8 @@ jobs:
         run: |
           cargo install cargo-packager --locked
           cargo packager --verbose --release ${{ env.TARGET_FLAGS }} ${{ env.FORMAT_FLAGS }}
+          cd target/${{matrix.target}}
+          ls
         env:
           VERSION: ${{ needs.create-release.outputs.version }}
 
