@@ -46,7 +46,7 @@ impl Selectors {
                 "#postlist > div.nthread_info.cl > div > div > span:nth-child(2)"
             ),
             main_content: parse_selector!(
-                "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div:nth-child(1) > table > tbody > tr > td.t_f"
+                "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div:nth-child(2) > table > tbody > tr > td.t_f"
             ),
             main_replys: parse_selector!(
                 "#postlist > div.nthread_firstpostbox > table.nthread_firstpost > tbody > tr:nth-child(1) > td > div > div > div.cm > div.pstl"
