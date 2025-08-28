@@ -96,8 +96,9 @@ jobs:
       - name: Build release binary
         shell: bash
         run: |
+          cargo install cross --locked
           cargo install cargo-packager --locked
-          cargo build --verbose --release ${{ env.TARGET_FLAGS }}
+          cross build --verbose --release ${{ env.TARGET_FLAGS }}
           cargo packager --verbose --release ${{ env.TARGET_FLAGS }} ${{ env.FORMAT_FLAGS }}
         env:
           VERSION: ${{ needs.create-release.outputs.version }}
