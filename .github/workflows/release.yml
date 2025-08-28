@@ -19,6 +19,10 @@ jobs:
       - name: Show the version
         run: |
           echo "version is: $VERSION"
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create $VERSION --draft --generate-notes --verify-tag --title $VERSION
     outputs:
       version: ${{ env.VERSION }}
 
@@ -103,11 +107,29 @@ jobs:
         env:
           VERSION: ${{ needs.create-release.outputs.version }}
 
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          draft: true
-          files: |
-            target/${{ matrix.target }}/release/*.app
-            target/${{ matrix.target }}/release/*.exe
-            target/${{ matrix.target }}/release/*.deb
+      - name: Upload
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: matrix.os == 'windows-latest'
+        run: |
+          version="${{ needs.create-release.outputs.version }}"
+          gh release upload "$version" target/${{ matrix.target }}/release/*.exe
+
+      - name: Upload
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          version="${{ needs.create-release.outputs.version }}"
+          gh release upload "$version" target/${{ matrix.target }}/release/*.deb
+
+      - name: Upload
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: matrix.os == 'macos-latest'
+        run: |
+          version="${{ needs.create-release.outputs.version }}"
+          gh release upload "$version" target/${{ matrix.target }}/release/*.app
