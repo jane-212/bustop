@@ -61,7 +61,7 @@ impl Selectors {
                 "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pi > div > div.authi > a.xw1"
             ),
             item_picture: parse_selector!(
-                "table.plhin > tbody > tr:nth-child(1) > td.pls > div.pls.favatar > div:nth-child(2) > div > a > img"
+                "table.plhin > tbody > tr:nth-child(1) > td.pls > div.pls.favatar > div > div.avatar > a > img"
             ),
             item_published_at: parse_selector!(
                 "table.plhin > tbody > tr:nth-child(1) > td.plc > div.pi > div > div.authi > em > span"
