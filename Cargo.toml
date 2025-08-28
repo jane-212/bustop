@@ -19,7 +19,6 @@ futures = "0.3.31"
 ego-tree = "0.10.0"
 
 [package.metadata.packager]
-before-packaging-command = "cargo build --release"
 product-name = "Bustop"
 identifier = "github.jane-212.bustop"
 icons = ["icons/icon.png", "icons/icon.icns"]

@@ -97,9 +97,8 @@ jobs:
         shell: bash
         run: |
           cargo install cargo-packager --locked
+          cargo build --verbose --release ${{ env.TARGET_FLAGS }}
           cargo packager --verbose --release ${{ env.TARGET_FLAGS }} ${{ env.FORMAT_FLAGS }}
-          cd target/${{matrix.target}}
-          ls
         env:
           VERSION: ${{ needs.create-release.outputs.version }}
 
