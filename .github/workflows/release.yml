@@ -112,7 +112,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libxcb-devel libxkbcommon-x11-devel libxkbcommon-devel
+          sudo apt-get install -y libxcb libxkbcommon-x11-dev libxkbcommon
 
       - name: Build release binary
         shell: bash
