@@ -113,7 +113,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get upgrade
-          sudo apt-get install -y libxcb libxkbcommon-x11-dev libxkbcommon
+          sudo apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev
 
       - name: Build release binary
         shell: bash
