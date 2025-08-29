@@ -40,36 +40,44 @@ jobs:
             rust: stable
             target: x86_64-unknown-linux-musl
             format: deb
+            suffix: x64
           - os: ubuntu-latest
             rust: stable
             target: x86_64-unknown-linux-gnu
             format: deb
+            suffix: x64
           - os: ubuntu-latest
             rust: stable
             target: aarch64-unknown-linux-musl
             format: deb
+            suffix: aarch64
           - os: ubuntu-latest
             rust: stable
             target: aarch64-unknown-linux-gnu
             format: deb
+            suffix: aarch64
 
           - os: macos-latest
             rust: stable
             target: aarch64-apple-darwin
             format: dmg
+            suffix: aarch64
           - os: macos-latest
             rust: stable
             target: x86_64-apple-darwin
             format: dmg
+            suffix: x64
 
           - os: windows-latest
             rust: stable
             target: x86_64-pc-windows-msvc
             format: nsis
+            suffix: x64
           - os: windows-latest
             rust: stable
             target: aarch64-pc-windows-msvc
             format: nsis
+            suffix: aarch64
 
     steps:
       - name: Checkout repository
@@ -114,7 +122,8 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          gh release upload "$version" target/${{ matrix.target }}/release/*.exe
+          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.exe
+          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.exe
 
       - name: Upload
         shell: bash
@@ -123,7 +132,8 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          gh release upload "$version" target/${{ matrix.target }}/release/*.deb
+          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.deb
+          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.deb
 
       - name: Upload
         shell: bash
@@ -132,4 +142,5 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          gh release upload "$version" target/${{ matrix.target }}/release/*.dmg
+          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.dmg
+          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.dmg
