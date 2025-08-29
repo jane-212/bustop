@@ -122,8 +122,11 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.exe
-          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.exe
+          release_dir="target/${{ matrix.target }}/release"
+          ori_name="Bustop_0.1.0_${{ matrix.suffix }}"
+          to_name="bustop-$version-${{ matrix.target }}"
+          mv ${release_dir}/${ori_name}.exe ${release_dir}/${to_name}.exe
+          gh release upload "$version" ${release_dir}/${to_name}.exe
 
       - name: Upload
         shell: bash
@@ -132,8 +135,11 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.deb
-          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.deb
+          release_dir="target/${{ matrix.target }}/release"
+          ori_name="Bustop_0.1.0_${{ matrix.suffix }}"
+          to_name="bustop-$version-${{ matrix.target }}"
+          mv ${release_dir}/${ori_name}.deb ${release_dir}/${to_name}.deb
+          gh release upload "$version" ${release_dir}/${to_name}.deb
 
       - name: Upload
         shell: bash
@@ -142,5 +148,8 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           version="${{ needs.create-release.outputs.version }}"
-          mv target/${{ matrix.target }}/release/Bustop_0.1.0_${{ matrix.suffix }}.exe target/${{ matrix.target }}/release/Bustop.dmg
-          gh release upload "$version" target/${{ matrix.target }}/release/Bustop.dmg
+          release_dir="target/${{ matrix.target }}/release"
+          ori_name="Bustop_0.1.0_${{ matrix.suffix }}"
+          to_name="bustop-$version-${{ matrix.target }}"
+          mv ${release_dir}/${ori_name}.dmg ${release_dir}/${to_name}.dmg
+          gh release upload "$version" ${release_dir}/${to_name}.dmg
