@@ -3,24 +3,24 @@ passthrough = ["VERSION"]
 
 [target.aarch64-unknown-linux-gnu]
 pre-build = [
-    "sudo apt-get update",
-    "sudo apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
+    "apt-get update",
+    "apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
 ]
 
 [target.aarch64-unknown-linux-musl]
 pre-build = [
-    "sudo apt-get update",
-    "sudo apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
+    "apt-get update",
+    "apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
 ]
 
 [target.x86_64-unknown-linux-musl]
 pre-build = [
-    "sudo apt-get update",
-    "sudo apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
+    "apt-get update",
+    "apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
 ]
 
 [target.x86_64-unknown-linux-gnu]
 pre-build = [
-    "sudo apt-get update",
-    "sudo apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
+    "apt-get update",
+    "apt-get install -y libxcb1-dev libxkbcommon-x11-dev libxkbcommon-dev",
 ]
