@@ -22,3 +22,11 @@ ego-tree = "0.10.0"
 product-name = "Bustop"
 identifier = "github.jane-212.bustop"
 icons = ["icons/icon.png", "icons/icon.icns"]
+
+[profile.release]
+debug = "limited"
+lto = "thin"
+codegen-units = 1
+
+[profile.release.package]
+zed = { codegen-units = 16 }
