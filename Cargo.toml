@@ -27,6 +27,3 @@ icons = ["icons/icon.png", "icons/icon.icns"]
 debug = "limited"
 lto = "thin"
 codegen-units = 1
-
-[profile.release.package]
-zed = { codegen-units = 16 }

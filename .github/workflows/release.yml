@@ -36,27 +36,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            rust: stable
-            target: x86_64-unknown-linux-musl
-            format: deb
-            suffix: x64
-          - os: ubuntu-latest
-            rust: stable
-            target: x86_64-unknown-linux-gnu
-            format: deb
-            suffix: x64
-          - os: ubuntu-latest
-            rust: stable
-            target: aarch64-unknown-linux-musl
-            format: deb
-            suffix: aarch64
-          - os: ubuntu-latest
-            rust: stable
-            target: aarch64-unknown-linux-gnu
-            format: deb
-            suffix: aarch64
-
           - os: macos-latest
             rust: stable
             target: aarch64-apple-darwin
@@ -127,19 +106,6 @@ jobs:
           to_name="bustop-$version-${{ matrix.target }}"
           mv ${release_dir}/${ori_name}.exe ${release_dir}/${to_name}.exe
           gh release upload "$version" ${release_dir}/${to_name}.exe
-
-      - name: Upload
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          version="${{ needs.create-release.outputs.version }}"
-          release_dir="target/${{ matrix.target }}/release"
-          ori_name="Bustop_0.1.0_${{ matrix.suffix }}"
-          to_name="bustop-$version-${{ matrix.target }}"
-          mv ${release_dir}/${ori_name}.deb ${release_dir}/${to_name}.deb
-          gh release upload "$version" ${release_dir}/${to_name}.deb
 
       - name: Upload
         shell: bash
